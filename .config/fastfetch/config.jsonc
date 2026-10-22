@@ -1,0 +1,243 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "logo": {
+    "type": "auto",
+    "source": "~/Pictures/Fastfetch_Images/gal_fastfetch.png",
+    "width": 50,
+    "height": 30,
+    "padding": {
+      "top": 0,
+      "left": 5,
+      "bottom": 0,
+      "right": 4
+    },
+    "printRemaining": true,
+    "preserveAspectRatio": false,
+    "cache": "regen",
+    "position": "left",
+    "chafa": {
+      "fgOnly": false,
+      "symbols": "block+border+space-wide-inverted"
+    }
+  },
+  "display": {
+    "stat": false,
+    "pipe": false,
+    "showErrors": false,
+    "disableLinewrap": false,
+    "hideCursor": false,
+    "separator": ": ",
+    "color": {
+      "keys": "",
+      "title": "",
+      "output": "",
+      "separator": ""
+    },
+    "brightColor": true,
+    "duration": {
+      "abbreviation": false,
+      "spaceBeforeUnit": "default"
+    },
+    "size": {
+      "maxPrefix": "YB",
+      "binaryPrefix": "iec",
+      "ndigits": 2,
+      "spaceBeforeUnit": "default"
+    },
+    "temp": {
+      "unit": "D",
+      "ndigits": 1,
+      "color": {
+        "green": "32",
+        "yellow": "93",
+        "red": "91"
+      },
+      "spaceBeforeUnit": "default"
+    },
+    "percent": {
+      "type": [
+        "num",
+        "num-color"
+      ],
+      "ndigits": 0,
+      "color": {
+        "green": "32",
+        "yellow": "93",
+        "red": "91"
+      },
+      "spaceBeforeUnit": "default",
+      "width": 0
+    },
+    "bar": {
+      "char": {
+        "elapsed": "■",
+        "total": "-"
+      },
+      "border": {
+        "left": "[ ",
+        "right": " ]",
+        "leftElapsed": "",
+        "rightElapsed": ""
+      },
+      "color": {
+        "elapsed": "auto",
+        "total": "97",
+        "border": "97"
+      },
+      "width": 10
+    },
+    "fraction": {
+      "ndigits": 2,
+      "trailingZeros": "default"
+    },
+    "noBuffer": false,
+    "key": {
+      "width": 0,
+      "type": "string",
+      "paddingLeft": 0
+    },
+    "freq": {
+      "ndigits": 2,
+      "spaceBeforeUnit": "default"
+    },
+    "constants": []
+  },
+  "general": {
+    "thread": true,
+    "processingTimeout": 5000,
+    "detectVersion": true,
+    "playerName": "",
+    "dsForceDrm": false
+  },
+  "modules": [
+    "break",
+    {
+        "type": "custom",
+        "format": "\u001b[33m┌──────────────────────Hardware──────────────────────┐"
+    },
+    {
+        "type": "host",
+        "key": "󰌢 PC",
+        "keyColor": "red",
+    },
+    {
+        "type": "cpu",
+        "key": "│ ├ ",
+        "showPeCoreCount": true,
+        "keyColor": "red",
+    },
+    {
+        "type": "gpu",
+        "key": "│ ├󰢮 ",
+        "keyColor": "red",
+    },
+    {
+        "type": "disk",
+        "key": "│ ├ ",
+        "keyColor": "red"
+    },
+    {
+        "type": "memory",
+        "key": "│ └ ",
+        "keyColor": "red"
+    },
+    {
+        "type": "custom",
+        "format": "\u001b[33m└────────────────────────────────────────────────────┘"
+    },
+    "break",
+    {
+        "type": "custom",
+        "format": "\u001b[33m┌──────────────────────Software──────────────────────┐"
+    },
+    {
+        "type": "os",
+        "key": " OS",
+        "keyColor": "blue"
+    },
+    {
+        "type": "initsystem",
+        "key": "│ ├ ",
+        "keyColor": "blue"
+    },
+    {
+        "type": "kernel",
+        "key": "│ ├ ",
+        "keyColor": "blue"
+    },
+    {
+        "type": "packages",
+        "key": "│ ├ ",
+        "keyColor": "blue"
+    },
+    {
+        "type": "terminal",
+        "key": "│ ├ ",
+        "keyColor": "blue"
+    },
+    {
+        "type": "shell",
+         "key": "└ └ ",
+        "keyColor": "blue"
+    },
+    "break",
+    {
+        "type": "wm",
+        "key": "󱂬 WM",
+        "keyColor": "magenta"
+    },
+    {
+        "type": "theme",
+        "key": "│ ├󰉼 ",
+        "keyColor": "magenta"
+    },
+    {
+        "type": "icons",
+        "key": "│ ├ ",
+        "keyColor": "magenta"
+    },
+    {
+        "type": "cursor",
+        "key": "│ ├ ",
+        "keyColor": "magenta"
+    },
+    {
+        "type": "font",
+        "key": "│ └ ",
+        "keyColor": "magenta"
+    },
+    {
+        "type": "custom",
+        "format": "\u001b[33m└────────────────────────────────────────────────────┘"
+    },
+    "break",
+    {
+        "type": "custom",
+        "format": "\u001b[33m┌───────────────────Miscellaneous────────────────────┐"
+    },
+    {
+        "type": "uptime",
+        "key": "   Uptime",
+        "keyColor": "cyan"
+    },
+    {
+        "type": "battery",
+        "key": " 󰁹 Battery",
+        "percent": {
+             "green": 50,
+             "yellow": 20,
+             "type": 0
+        }
+    },
+    {
+        "type": "colors",
+        "paddingLeft": 20,
+        "symbol": "star"
+    },
+    {
+        "type": "custom",
+        "format": "\u001b[33m└────────────────────────────────────────────────────┘"
+    },
+    "break"
+  ]
+}
