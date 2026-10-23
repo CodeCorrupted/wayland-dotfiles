@@ -1,0 +1,148 @@
+##############################################################
+## This is an example configuration file. Copy it to        ##
+## $XDG_CONFIG_HOME/ncmpcpp/config or $HOME/.ncmpcpp/config ##
+## and set up your preferences.                             ##
+##############################################################
+#
+##### directories ######
+##
+## Directory for storing ncmpcpp related files.  Changing it is useful if you
+## want to store everything somewhere else and provide command line setting for
+## alternative location to config file which defines that while launching
+## ncmpcpp.
+ncmpcpp_directory = ~/.config/ncmpcpp
+
+## Directory for storing downloaded lyrics. It defaults to ~/.lyrics since other
+## MPD clients (eg. ncmpc) also use that location.
+lyrics_directory = ~/.lyrics
+
+##### connection settings #####
+
+mpd_host = localhost
+mpd_port = 6600
+
+## Needed for tag editor and file operations to work.
+mpd_music_dir = "~/Music"
+mpd_crossfade_time = 5
+
+##### music visualizer #####
+visualizer_data_source = "/tmp/mpd.fifo"
+
+## Note: Below parameter is needed for ncmpcpp to determine which output
+## provides data for visualizer and reset it at the beginning of visualization
+## to synchronize with audio.
+visualizer_output_name = "my_fifo"
+## If you set format to 44100:16:2, make it 'yes'.
+visualizer_in_stereo = yes
+
+## Note: set below to >=10 only if you have synchronization issues with
+## visualization and audio.
+#visualizer_sync_interval = 0
+
+## Available values: spectrum, wave, wave_filled, ellipse.
+visualizer_type = spectrum
+#visualizer_fps = 60
+visualizer_autoscale = no
+#visualizer_look = ●▮
+#visualizer_color = blue, cyan, green, yellow, magenta, red
+
+## Alternative subset of 256 colors for terminals that support it.
+#visualizer_color = 47, 83, 119, 155, 191, 227, 221, 215, 209, 203, 197, 161
+
+#
+## Note: The next few visualization options apply to the spectrum visualizer.
+#
+
+## Use unicode block characters for a smoother, more continuous look.
+## This will override the visualizer_look option. With transparent terminals
+## and visualizer_in_stereo set, artifacts may be visible on the bottom half of
+## the visualization.
+visualizer_spectrum_smooth_look = yes
+
+## Use unicode block characters from "symbols for legacy computing". This
+## improves the smooth look on transparent terminals by using special unicode
+## chars instead of reversing the background and foreground color on the bottom
+## edge of the spectrum. If it leads to a garbled output on the bottom edge of
+## the spectrum, you can either change the font or disable this option.
+visualizer_spectrum_smooth_look_legacy_chars = yes
+
+## A value between 1 and 5 inclusive. Specifying a larger value makes the
+## visualizer look at a larger slice of time, which results in less jumpy
+## visualizer output.
+#visualizer_spectrum_dft_size = 2
+#visualizer_spectrum_gain = 10
+
+## Left-most frequency of visualizer in Hz, must be less than HZ MAX
+#visualizer_spectrum_hz_min = 20
+
+## Right-most frequency of visualizer in Hz, must be greater than HZ MIN
+#visualizer_spectrum_hz_max = 20000
+
+## Use log scaling for the frequency spectrum axes
+#visualizer_spectrum_log_scale_x = yes
+#visualizer_spectrum_log_scale_y = yes
+
+##### various settings #####
+
+## Note: Custom command that will be executed each time song changes. Useful for
+## notifications etc.
+execute_on_song_change = songinfo
+
+## Note: Possible display modes: classic, columns.
+playlist_display_mode = columns
+browser_display_mode = columns
+search_engine_display_mode = columns
+playlist_editor_display_mode = columns
+autocenter_mode = yes
+centered_cursor = yes
+#
+## Note: You can specify third character which will be used to build 'empty'
+## part of progressbar.
+progressbar_look="━─"
+
+## Available values: classic, alternative.
+user_interface = alternative
+
+lyrics_fetchers = tags, tekstowo, genius
+follow_now_playing_lyrics = yes
+#fetch_lyrics_for_current_song_in_background = no
+
+
+
+clock_display_seconds = yes
+display_bitrate = yes
+display_remaining_time = yes
+
+## Available values: none, basic, extended, perl.
+#
+regular_expressions = perl
+
+#
+## Note: if below is enabled, ncmpcpp will ignore leading "The" word while
+## sorting items in browser, tags in media library, etc.
+#
+ignore_leading_the = yes
+
+mouse_support = yes
+lines_scrolled = 3
+enable_window_title = yes
+
+#
+## Note: You can choose default search mode for search engine. Available modes
+## are:
+##
+## - 1 - use mpd built-in searching (no regexes, pattern matching)
+##
+## - 2 - use ncmpcpp searching (pattern matching with support for regexes, but
+##       if your mpd is on a remote machine, downloading big database to process
+##       it can take a while
+##
+## - 3 - match only exact values (this mode uses mpd function for searching in
+##       database and local one for searching in current playlist)
+#
+search_engine_default_search_mode = 2
+external_editor = vim
+#
+## Note: set to yes if external editor is a console application.
+##
+#use_console_editor = yes
