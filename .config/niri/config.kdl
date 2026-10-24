@@ -46,6 +46,7 @@ binds {
     XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
 
     Mod+Return repeat=false hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Mod+Shift+Return repeat=false hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+D repeat=false hotkey-overlay-title="Run an Application: noctalia" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Super+Alt+L repeat=false hotkey-overlay-title="Lock the Screen: noctalia" { spawn-sh "noctalia msg session lock"; }
 
@@ -387,6 +388,15 @@ window-rule {
 }
 
 window-rule {
+    match app-id="Alacritty"
+    opacity 0.8
+    background-effect {
+	blur true
+    }
+    draw-border-with-background false
+}
+
+window-rule {
     match app-id="Nautilus"
     opacity 0.8
     background-effect {
@@ -424,6 +434,12 @@ window-rule {
 window-rule {
     match app-id="metro"
     open-fullscreen true
+}
+
+window-rule {
+    match app-id="galculator"
+    open-floating true
+    baba-is-float true
 }
 
 layer-rule {
