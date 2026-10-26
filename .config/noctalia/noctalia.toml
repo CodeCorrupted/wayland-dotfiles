@@ -1,0 +1,270 @@
+[backdrop]
+blur_intensity = 0.5
+enabled = true
+tint_intensity = 0.29999999999999999
+
+[bar.default]
+capsule = true
+center = [ "media" ]
+end = [ "tray", "group:g3", "battery", "clock", "session" ]
+font_family = "MesloLGL Nerd Font"
+margin_edge = 5
+start = [ "workspaces", "group:g1", "ram" ]
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    border_width = 1.0
+    enabled = true
+    fill = "surface_variant"
+    id = "g1"
+    members = [ "wallpaper", "notifications", "control-center" ]
+    opacity = 1.0
+    padding = 6.0
+
+    [[bar.default.capsule_group]]
+    accordion = false
+    accordion_direction = "end"
+    border_width = 1.0
+    enabled = true
+    fill = "surface_variant"
+    id = "g3"
+    members = [ "volume", "brightness" ]
+    opacity = 1.0
+    padding = 6.0
+
+[calendar]
+dedupe_events = true
+enabled = true
+
+    [calendar.account.personal_google]
+    name = "personal"
+    type = "google"
+
+    [calendar.account.trabajo_gral]
+    name = "trabajo"
+    type = "google"
+
+    [calendar.account.universidad_mrvoid]
+    name = "universidad"
+    type = "google"
+
+[desktop_widgets]
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[hot_corners]
+enabled = true
+
+    [hot_corners.bottom_left]
+    action = "launcher"
+
+    [hot_corners.top_left]
+    action = "window_switcher"
+
+    [hot_corners.top_right]
+    action = "control_center"
+
+[idle]
+behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 600.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = false
+    timeout = 900.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 660.0
+
+[location]
+address = "Salta, Argentina"
+sunrise = "08:30"
+sunset = "19:00"
+
+[lockscreen]
+fingerprint = false
+wallpaper = "/home/arc/Pictures/Wallpapers/@SovietAnime (16).jpg"
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-widget-0000000000000001" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 800.0
+    cy = 718.0
+    output = "eDP-1"
+    placement_height = 900.0
+    placement_width = 1600.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 0.0
+    box_width = 0.0
+    cx = 800.0
+    cy = 88.0
+    output = "eDP-1"
+    placement_height = 900.0
+    placement_width = 1600.0
+    rotation = 0.0
+    type = "clock"
+
+[nightlight]
+enabled = true
+temperature_night = 2000
+
+[notification]
+background_opacity = 0.69999998435378075
+
+[shell]
+clipboard_enabled = false
+font_family = "MesloLGL Nerd Font"
+polkit_agent = true
+
+    [shell.launcher]
+    auto_paste = "off"
+    category_icons_only = true
+    fetch_exchange_rates = false
+    layout = "simple"
+
+    [shell.panel]
+    list_item_background = true
+    open_near_click_control_center = true
+    session_placement = "floating"
+    session_position = "center"
+    transparency_mode = "glass"
+
+    [[shell.session.actions]]
+    action = "lock"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "1"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "logout"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "2"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "lock_and_suspend"
+    countdown_seconds = 0.0
+    enabled = false
+    shortcut = "3"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "reboot"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "4"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "5"
+    variant = "destructive"
+
+    [shell.shadow]
+    direction = "down_left"
+
+[system.monitor]
+cpu_poll_seconds = 0
+disk_poll_seconds = 0
+network_poll_seconds = 0
+
+[theme]
+builtin = "Noctalia"
+community_palette = "Oxocarbon"
+mode = "dark"
+source = "wallpaper"
+wallpaper_scheme = "vibrant"
+
+    [theme.templates]
+    builtin_ids = [ "alacritty", "btop", "gtk3", "gtk4", "kitty", "niri", "qt" ]
+    community_ids = [ "opencode", "discord", "steam", "fastfetch", "zathura" ]
+
+[wallpaper]
+directory = "/home/arc/Pictures/Wallpapers"
+directory_dark = "/home/arc/Pictures/Wallpapers"
+directory_light = "/home/arc/Pictures/Wallpapers"
+edge_smoothness = 0.29999999999999999
+enabled = true
+fill_color = "#111111"
+fill_mode = "fit"
+per_monitor_directories = false
+transition = [ "fade", "wipe", "disc", "stripes", "zoom", "honeycomb" ]
+transition_duration = 1500
+transition_on_startup = true
+
+    [wallpaper.automation]
+    enabled = true
+    interval_seconds = 3600
+    order = "random"
+    recursive = false
+
+    [wallpaper.default]
+    path = "/home/arc/Pictures/Wallpapers/photo_2022-08-02_16-23-39.jpg"
+
+    [wallpaper.last]
+    path = "/home/arc/Pictures/Wallpapers/photo_2022-08-02_16-23-39.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/arc/Pictures/Wallpapers/photo_2022-08-02_16-23-39.jpg"
+
+    [[wallpaper.favorite]]
+    path = "/home/arc/Pictures/Wallpapers/SovietAnimeasdf (12).jpg"
+    theme_mode = "auto"
+
+    [[wallpaper.favorite]]
+    path = "/home/arc/Pictures/Wallpapers/@SovietAnime (30).jpg"
+    theme_mode = "auto"
+
+[weather]
+refresh_minutes = 60
+
+[widget.battery]
+capsule = true
