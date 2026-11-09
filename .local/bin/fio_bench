@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly TEST_FILE="$HOME/.fio_test_file"
+readonly FILE_SIZE="2G"
+readonly RUN_TIME=30
+readonly NUM_RUNS=3
+readonly LOG_DIR="$HOME/.local/share/fio-logs"
+FECHA=$(date +%Y%m%d_%H%M%S)
+readonly LOG_FILE="$LOG_DIR/fio_results_$FECHA.log"
+
+mkdir -p "$LOG_DIR"
+
+info() {
+	printf "%s\n" "$*"
+}
+
+verificar_dependencias() {
+	local dep
+	for dep in fio nproc awk grep tee xargs; do
+		if ! command -v "$dep" &>/dev/null; then
+			printf "ERROR: El comando requerido '%s' no esta instalado.\n" "$dep" >&2
+			exit 1
+		fi
+	done
+}
+
+cleanup() {
+	local estado_salida=$?
+	if [[ -f "$TEST_FILE" ]]; then
+		printf "\nBorrando archivo de prueba temporal...\n" >&2
+		rm -f "$TEST_FILE"
+		printf "Archivo borrado. Revisa el log completo en: %s\n" "$LOG_FILE" >&2
+	fi
+
+	exit "$estado_salida"
+}
+
+trap cleanup EXIT
+
+run_test() {
+	local test_name="$1"
+	local test_params="$2"
+
+	printf "\n========================================\n"
+	printf " PRUEBA: %s\n" "$test_name"
+	printf "========================================\n"
+
+	printf "PRUEBA: %s\n" "$test_name" >>"$LOG_FILE"
+	printf "Parametros: %s\n" "$test_params" >>"$LOG_FILE"
+
+	for ((i = 1; i <= NUM_RUNS; i++)); do
+		printf " -> Ejecución %d de %d...\n" "$i" "$NUM_RUNS"
+
+		local run_out
+		if ! run_out=$(fio --name="${test_name}-run${i}" \
+			--filename="$TEST_FILE" \
+			--size="$FILE_SIZE" \
+			$test_params \
+			--direct=1 \
+			--ioengine=libaio \
+			--runtime="$RUN_TIME" \
+			--time_based 2>&1); then
+			printf "❌ ERROR en fio (Run %d). Revisa el log.\n" "$i"
+			printf "%s\n" "$run_out" >>"$LOG_FILE"
+			continue
+		fi
+
+		printf "%s\n\n" "$run_out" >>"$LOG_FILE"
+
+		local bw
+		local iops
+		local lat99
+
+		iops=$(echo "$run_out" | grep -E "write: IOPS=|read: IOPS=" | tail -n 1 | awk '{print $2}' | sed 's/IOPS=//; s/,//' || echo "N/A")
+		bw=$(echo "$run_out" | grep -E "write: IOPS=|read: IOPS=" | tail -n 1 | awk '{print $3}' | sed 's/BW=//' || echo "N/A")
+		lat99=$(echo "$run_out" | grep "99.00th" | awk -F'[][]' '{print $2}' | xargs || echo "N/A")
+
+		local resumen=" [Run $i] IOPS: $iops | BW: $bw | Latencia 99th: $lat99 us"
+		printf "%s\n" "$resumen" | tee -a "$LOG_FILE"
+	done
+	printf "========================================\n"
+}
+
+verificar_dependencias
+
+printf "==================================================\n"
+info "Iniciando Benchmarking de Disco con FIO"
+printf "==================================================\n"
+printf "Resultados se guardarán en: %s\n" "$LOG_FILE"
+printf "Ejecutando %d pruebas de %ds para cada perfil...\n" "$NUM_RUNS" "$RUN_TIME"
+printf "Por favor, no uses el equipo intensivamente durante la prueba.\n"
+
+# Escritura secuencial (Copia de archivos grandes)
+run_test "SEQ_WRITE" "--rw=write --bs=1M --iodepth=16"
+
+# Lectura aleatoria de 4K (Carga tipica de SO)
+run_test "RAND_READ_4K" "--rw=randread --bs=4k --iodepth=32"
+
+# Escritura aleatoria de 4K (talon de aquiles de los SSD)
+run_test "RAND_WRITE_4K" "--rw=randwrite --bs=4k --iodepth=32"
+
+# Carga mixta (75% lectura / 25% escritura )
+run_test "MIXED_75_25" "--rw=randrw --rwmixread=75 --bs=4k --iodepth=64"
