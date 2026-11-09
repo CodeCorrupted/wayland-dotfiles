@@ -1,68 +1,68 @@
 [colors.primary]
-background = '#291514'
+background = '#291914'
 foreground = '#f3f2f2'
 
 [colors.cursor]
-text = '#291514'
+text = '#291914'
 cursor = '#f3f2f2'
 
 [colors.vi_mode_cursor]
-text = '#291514'
-cursor = '#eb6a61'
+text = '#291914'
+cursor = '#e48467'
 
 [colors.search.matches]
-foreground = '#371c1b'
-background = '#dde84a'
+foreground = '#37211b'
+background = '#bedc56'
 
 [colors.search.focused_match]
-foreground = '#371c1b'
-background = '#eb6a61'
+foreground = '#37211b'
+background = '#e48467'
 
 [colors.footer_bar]
-foreground = '#371c1b'
+foreground = '#37211b'
 background = '#e8e4e3'
 
 [colors.hints.start]
-foreground = '#371c1b'
-background = '#e8a44a'
+foreground = '#37211b'
+background = '#5c6ed6'
 
 [colors.hints.end]
-foreground = '#371c1b'
-background = '#e8a44a'
+foreground = '#37211b'
+background = '#5c6ed6'
 
 [colors.selection]
-text = '#b6afaf'
-background = '#371c1b'
+text = '#b6b0af'
+background = '#37211b'
 
 
 [colors.normal]
-black   = '#371c1b'
-red     = '#ee4234'
-green   = '#eb6a61'
-yellow  = '#e8a44a'
-blue    = '#dde84a'
-magenta = '#f1948e'
-cyan    = '#f1c68e'
+black   = '#37211b'
+red     = '#da5d39'
+green   = '#e48467'
+yellow  = '#687ce5'
+blue    = '#bedc56'
+magenta = '#eca793'
+cyan    = '#96a2e9'
 white   = '#f3f2f2'
 
 
 [colors.bright]
-black   = '#716361'
-red     = '#ee4234'
-green   = '#eb6a61'
-yellow  = '#e8a44a'
-blue    = '#dde84a'
-magenta = '#f1948e'
-cyan    = '#f1c68e'
+black   = '#716561'
+red     = '#da5d39'
+green   = '#e48467'
+yellow  = '#687ce5'
+blue    = '#bedc56'
+magenta = '#eca793'
+cyan    = '#96a2e9'
 white   = '#f3f2f2'
 
 
 [colors.dim]
-black   = '#371c1b'
-red     = '#ee4234'
-green   = '#eb6a61'
-yellow  = '#e8a44a'
-blue    = '#dde84a'
-magenta = '#f1948e'
-cyan    = '#f1c68e'
+black   = '#37211b'
+red     = '#da5d39'
+green   = '#e48467'
+yellow  = '#687ce5'
+blue    = '#bedc56'
+magenta = '#eca793'
+cyan    = '#96a2e9'
 white   = '#f3f2f2'

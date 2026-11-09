@@ -180,5 +180,20 @@ alias stop_docker="sudo rc-service docker stop"
 alias start_split_tunneling="sudo wg-quick up wg0"
 alias stop_split_tunneling="sudo wg-quick down wg0"
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+alias eliminar_huerfanos='sudo pacman -Rns $(pacman -Qtdq)'
+optdeps() {
+	LC_ALL=C.UTF-8 pacman -Qei |
+		sed '/^[^NO ]/d;/None$/d' |
+		awk 'BEGIN{RS=ORS="\n\n";FS=OFS="\n\\S"} /Optional Deps/ {print $1"\nO"$2}' |
+		sed 's/^Optional Deps   ://;/\[installed\]$/d;s/\s\+/ /'
+}
+alias iperf_up='iperf3 -c 192.168.0.10'
+alias iperf_down='iperf3 -c 192.168.0.10 -R'
+alias iperf_up_full='iperf3 -c 192.168.0.10 -t 30 -P 4'
+alias sb-cpu1='sysbench cpu --cpu-max-prime=20000 --threads=1 run'
+alias sb-cpumax='sysbench cpu --cpu-max-prime=20000 --threads=$(nproc) run'
+alias sb-cpu-ext='sysbench cpu --cpu-max-prime=50000 --threads=$(nproc) --time=30 run'
+alias sb-memseq='sysbench memory --memory-block-size=1K --memory-total-size=4G --memory-access-mode=seq run'
+alias sb-memrand='sysbench memory --memory-block-size=1K --memory-total-size=4G --memory-access-mode=rnd run'
 
 [ -f "/home/arc/.ghcup/env" ] && . "/home/arc/.ghcup/env" # ghcup-env

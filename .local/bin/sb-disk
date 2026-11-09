@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly TEST_DIR="$HOME/.sysbench_disk_test"
+readonly FILE_SIZE="2G"
+readonly TEST_TIME=30
+readonly TEST_MODE="rndrw"
+
+info() {
+	printf "%s\\n" "$\*"
+}
+
+cleanup() {
+	local estado_salida=$?
+
+	if [[ -d "$TEST_DIR" ]]; then
+		printf "\\nLimpiando archivos de prueba de sysbench...\\n" >&2
+		sysbench fileio --file-total-size="$FILE_SIZE" cleanup &>/dev/null || true
+		rm -rf "$TEST_DIR"
+		printf "Limpieza completada.\\n" >&2
+	fi
+
+	exit "$estado_salida"
+}
+
+verificar_dependencias() {
+	local dep
+	for dep in sysbench nproc; do
+		if ! command -v "$dep" &>/dev/null; then
+			printf "ERROR: El comando requerido '%s' no está instalado.\\n" "$dep" >&2
+			exit 1
+		fi
+	done
+}
+
+trap cleanup EXIT
+
+verificar_dependencias
+
+mkdir -p "$TEST_DIR"
+cd "$TEST_DIR"
+
+printf "==================================================\\n"
+info "Iniciando Prueba de Disco con Sysbench"
+printf "==================================================\\n"
+printf "Directorio: %s\\n" "$TEST_DIR"
+printf "Tamaño:     %s\\n" "$FILE_SIZE"
+printf "Modo:       %s\\n" "$TEST_MODE"
+printf "Duración:   %ds\\n" "$TEST_TIME"
+printf "==================================================\\n\\n"
+info "⃣Preparando archivos de prueba..."
+
+sysbench fileio --file-total-size=$FILE_SIZE prepare
+
+sysbench fileio \
+	--file-total-size="$FILE_SIZE" \
+	--file-test-mode="$TEST_MODE" \
+	--time="$TEST_TIME" \
+	--threads="$(nproc)" \
+	run

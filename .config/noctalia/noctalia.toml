@@ -234,7 +234,7 @@ directory_light = "/home/arc/Pictures/Wallpapers"
 edge_smoothness = 0.29999999999999999
 enabled = true
 fill_color = "#111111"
-fill_mode = "fit"
+fill_mode = "span"
 per_monitor_directories = false
 transition = [ "fade", "wipe", "disc", "stripes", "zoom", "honeycomb" ]
 transition_duration = 1500
@@ -247,13 +247,13 @@ transition_on_startup = true
     recursive = false
 
     [wallpaper.default]
-    path = "/home/arc/Pictures/Wallpapers/photo_2022-08-02_16-23-39.jpg"
+    path = "/home/arc/Pictures/Wallpapers/20230705_0750_working.jpg"
 
     [wallpaper.last]
-    path = "/home/arc/Pictures/Wallpapers/photo_2022-08-02_16-23-39.jpg"
+    path = "/home/arc/Pictures/Wallpapers/20230705_0750_working.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/arc/Pictures/Wallpapers/photo_2022-08-02_16-23-39.jpg"
+    path = "/home/arc/Pictures/Wallpapers/20230705_0750_working.jpg"
 
     [[wallpaper.favorite]]
     path = "/home/arc/Pictures/Wallpapers/SovietAnimeasdf (12).jpg"
